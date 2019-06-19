@@ -1,0 +1,28 @@
+#****************************************************************************#
+#SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001
+#$Id: Makefile 1903 2013-07-10 01:40:20Z favorov $
+#****************************************************************************#
+#this file can be started only from parent directory
+
+
+.PHONY:	all tests objs clean zip cleanzip
+
+all: ccvars gibbslfm.mak
+	@if [ ! -d ./obj ]; then mkdir ./obj && echo "Creating ./obj...";fi
+	$(MAKE) -f gibbslfm.mak
+
+clean:
+	$(MAKE) -f gibbslfm.mak clean
+
+zip:
+	$(MAKE) -f gibbslfm.mak zip
+
+cleanzip:
+	$(MAKE) -f gibbslfm.mak cleanzip
+
+tests:
+	$(MAKE) -f routine-tests/AtgcTest.mak
+	$(MAKE) -f routine-tests/SequencesPileTest.mak
+	$(MAKE) -f routine-tests/SymbolsCounterTest.mak
+	$(MAKE) -f routine-tests/MarkovChainStateTest.mak
+	$(MAKE) -f routine-tests/MotifsSetTest.mak

@@ -1,0 +1,154 @@
+******************************************************************************
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001
+$Id: headers.txt 1014 2009-03-01 16:50:36Z favorov $
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The file is general description of header files and containing classes.
+It is referenced in their comments. The file is part of source distribution,
+not executable.
+******************************************************************************
+
+Representation
+All the letter and word positions, sequence numbers, etc are 0-based.
+The letters are represented as 1..letters_in_alphabet.
+The zero letter cannot be a sequence letter.
+
+The position of a word if the sequence is read in 5'-3' direction is
+the position of 5' (start) point of the word. If the sequence is
+read as complement, the word position is the position of 3' (the
+last) letterr of the word.
+
+5' ----------|*********----------> 3'
+3' <---------|*********----------  5'
+
+So, for a 5'-3'-read sequence, a letter, which has position pos in
+a pattern located at wpos in the sequence, has position wpos+pos 
+in the sequence (all three are 0-based). For a complement sequence,
+the letter has (wpos+pattern_length-1-pos) position in sequence.
+
+Exception.hpp
+
+contains DumbException class - it is actually a string which can be thrown, nothing more. 
+Here, we can grow a big tree of inherited exceptions whether we need any. 
+
+Atgc.hpp
+
+We put there the Atgc class with five static methods: atgc2ushort and ushort2atgc, output_sequence_as_atgc(unsigned short*, length) and output_sequence_as_atgc(vector<unsigned short>) and make_complement(vector<unsigned short> & dest, const vector<unsigned short> & source). 
+
+Sequences.hpp
+
+SequencesPile is a class to maintain a set of sequences in unsigned short* representation. It is  vector<vector<unsigned short>> sequences,
+which is self-descriptive. Also, we maintain the sequence names there. The sequence addition procedure, SequncesPile::add adds the sequence to the bunch.
+max_length and min_length are up-to-date mininal and maximal sequence length.
+
+The most sraight way to get a SequencesPile is to read it from a FastA file using operator>>. We can write it back to FastA by operator<<.
+
+
+Random.h and Random.c
+are self-documented. They carry a good random generator. The code is not a part of the project, but is only used in it, so the files are not headered with "SeSiMCMC" logo.
+
+MarkovChainState.hpp
+Contains class MarkovChainState which desscribes a state of a sampler like GibbsLooking-for-Motifs-Sampler. It carries information about sequences number, motif length, about motifs presence and  their positions in perfect sequences, and about whether the sequences are treated as comlement. It cam be copied, assigned, wriiten to text stream or read from it, chechked for equvalence with other MarkovChainState. Two MarkovChainState can be tested for similarity using scalar product operator*(state1,state2), which is defined in the same file. The scalar product use the criteria "if two sites overlap for a half of shorter one or more, they are identical". If the condition holds, we add 2 to divider and to divident. If the two sites overlap less, we add 1 to divident and 2 to divider. If they do not intersect, we add 2 to divider.
+
+ResultsSet.hpp
+class a Site is a found site with its characteristics. The operators < and == are defined obligatory for we need to sort the results for output.
+The are two strings in every object sequence name tail (like ccc for Ec|ccc) and the motif itself.
+
+The class instance an be copied, etc, as usual set which it is based on.
+
+The ResultsSet is just a based on o set of Sites. In addition, it has a SymbolsCounter descendent for the classes which is accessable as constant form outworld.
+
+The ResultsSet can be created from a SequencesPile, a MarkovChainState corresponding to the pile, a contant reference to a LookingForAtgcMotifsMultinomialGibbs which know how to create SymbolsCounter for our task a parameter that tell how to store strings for sites on complement thread: as it is read on direct strand (=1) or as-is (=0).
+
+It has a << operator, which outputs it in correspondence with our output stadard. We must set a flag field "output_additional_information" to get the information.
+
+SymbolsCounter.hpp
+SymbolsCounter is a class which incapsualtes all letter-counting operation necessary for the likelihood evaluations in Sampler. We can instatiate a lot of SymbolsCounter occurences on one SequencePile. We need to know letters_in_alphabet number to instantiate a SymbolsCounter.
+
+The main functions of the class are consructor, exclude_sequence and include_sequence pair which remove or add a sequence from the counters and foreground_probability and background_probability nethods which gives a symbol probability for the state coumputed by the object.
+
+It has a member function NegativeEntropy() which eavaluates the information content of a state desribed by the gathered statistics.
+
+Also, there are special AtgcSymbolsCounter and SymmetricSymbolsCounter which know how to deal with complements ans with palindromes.
+
+
+MCMC.hpp
+carries classes which organise Markov chain Monte-Carlo process. These classes core for all the project. 
+
+LookingForAtgcMotifsMultinomialGibbs is a realisation of Lawrence93 sampler. It has a const reference to SequncesBunch which it explores. It carries a SymbolsCounter which is used usually in methods (which can also create and use additional SymbolsCounter instances).
+
+Actually, LookingForAtgcMotifsMultinomialGibbs is an abstract base (some functions are pure virtual) which is a base for LookingForAtgcMotifsInOneThreadMultinomialGibbs,
+LookingForAtgcMotifsInTwoThreadsMultinomialGibbs,
+LookingForAtgcPalindromesMultinomialGibbs
+which are slightly different in their numerical functions and works with generic motifs in one direction, generic motifs in both directions and palindromic motifs, correspondingly.
+
+The current MC state is contained in MarkovChainState & the_state, which is referenced with const MarkovChainState & theState.
+
+There are two methods to update the sampler state. First is a Gibbs sampling step. It draws the position of the motif in currennt sequence from the distribution of all its possible states given the states of motifs in all other sequences. The state here means the motif presence, its position if it is present and isit to be read as is or as complement. The second method changes position of all motifs and their length in a way as they are glued together, trying to maximise the information content of a motif.
+
+The routines executing the changes are called LocalGibbsStep(unsigned int current_seq) and PositionAndLengthAdjustment(). There is a reduced version of PositionAndLengthAdjustment which treat the length as fixed. Its name is PositionAdjustment().
+
+Also, the class provides a function to evaluate motif information contents on a step: Negative_Entropy_with_defined_patterns_per_pattern_position. It is based on NegativeEntropy fuction of SymbolsCounter.
+
+The LookingForAtgcMotifsMultinomialGibbs class has only one costructor:
+
+LookingForAtgcMotifsMultinomialGibbs
+(
+	const SequencesPile & Sequences, 
+	double motif_absence_prior,
+	unsigned long local_step_cycles_between_adjustments,
+	unsigned short be_quiet,
+	ostream & logstream
+) throw (DumbException);
+
+
+It counts default_pattern_lenght, shortest_significant_motif and longest_sensible_motif for the Sequences.
+
+The sampler state is MarkovChainState the_state, which is protected and referenced by const MarkovChainState & theState. 
+
+local_periods_between_adjustments is set to 0 by default which mean that it will be set to a round number close to Sequences.max_length.
+
+The looking for the best motifs set sampling procedure is called as 
+
+	double long find_maximum
+			(
+				unsigned int pattern_length,
+				unsigned int minimal_pattern_length,
+				unsigned int maximal_pattern_length,
+				unsigned short adjust_pattern_length,
+			 	unsigned long steps_number_maximum_is_to_be_global_for,
+				unsigned int annealings_number_maximum_is_to_be_global_for,
+				unsigned int local_cycles_to_stop_annealing,
+			 	double annealing_stop_change_level,
+				unsigned int adjustments_during_annealing,
+				unsigned int chain_fails_after,
+				unsigned int chains_to_try,
+				unsigned long max_steps=0ul-1
+			) throw(LostInSpaceOnTracing,LostInSpaceOnAnnealing,TooMuchChainsFailed);
+
+The scalar-product annealing-is-over test we use here is following : annealing_was_finished_test_local_cycles sequential products are more than sequential_states_product_test_level.
+
+First, the sampler locks the motif length and forbids motifs to disappear and starts to anneal, i.e. to look for a looking sensible motifs set, not obligatory the best.
+
+After every cycle of local steps we test the scalar product of states before and after the cycle.If we suppose that the annealing is over and starts to look for "global" maximum. We suppose a maximum to be global if it is virtually global for a steps_number_maximum_is_to_be_global_for steps amd for annealings_number_maximum_is_to_be_global_for*annealing_time steps.
+
+The adjustments here are based on the last state. If an adjustments leads to a new state, we test it to be a new local maximum.
+
+More comprehesive discribtion of the sampling algorythm is given in "how-does-it-work" part of readme file.
+
+Also, we can use slow sampling mode (see readme) by calling
+
+double find_maximum_slowly
+		(
+			unsigned int minimal_pattern_length,
+			unsigned int maximal_pattern_length,
+			set <pair<unsigned int,double> > & G_values,
+			unsigned long steps_number_maximum_is_to_be_global_for,
+			unsigned int annealings_number_maximum_is_to_be_global_for,
+			unsigned int local_cycles_to_stop_annealing,
+			double annealing_stop_change_level,
+			unsigned int adjustments_during_annealing,
+			unsigned int chain_fails_after,
+			unsigned int chains_to_try,
+			unsigned long max_steps=0ul-1
+		) throw(LostInSpaceOnTracing,LostInSpaceOnAnnealing,TooMuchChainsFailed);
+
