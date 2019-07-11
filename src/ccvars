@@ -15,17 +15,16 @@ else
 endif
 endif
 
-uname_info=$(shell uname -a)
-ifeq (Darwin,$(findstring Darwin,$(uname_info)))
-	MAC=MAC
-endif
-ifeq (Cygwin,$(findstring Cygwin,$(uname_info)))
-	CYGWIN=CYGWIN
-endif
 
 gcc_version_info=$(shell gcc --version)
-gcc_4_test=(GCC) 4
-gcc_3_test=(GCC) 3
+
+gcc_5_test=) 5.
+gcc_4_test=) 4.
+gcc_3_test=) 3.
+
+ifeq ($(gcc_5_test), $(findstring $(gcc_5_test),$(gcc_version_info)))
+	GCC4=GCC5
+endif
 ifeq ($(gcc_4_test), $(findstring $(gcc_4_test),$(gcc_version_info)))
 	GCC4=GCC4
 endif
@@ -63,11 +62,9 @@ else #GCC3
 	INCLUDECLOSETERM= -I-
 endif
 
-ifdef MAC
 ifdef GCC4
 OMITSYMBOLINFOFLAG=
 # -s is obsoleted for mac, gcc4
-endif
 endif
 
 #ifdef CYGWIN

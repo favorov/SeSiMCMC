@@ -18,7 +18,7 @@ includeflags = $(foreach dir,$(subst :,$(space),$(srcdirlist)),$(INCLUDEKEY)$(di
 
 OPTIMISE=YES
 
-include ~/include/ccvars
+include ccvars
 
 .PHONY: all objs clean zip cleanzip
 
