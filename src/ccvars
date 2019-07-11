@@ -18,10 +18,18 @@ endif
 
 gcc_version_info=$(shell gcc --version)
 
+gcc_7_test=) 7.
+gcc_6_test=) 6.
 gcc_5_test=) 5.
 gcc_4_test=) 4.
 gcc_3_test=) 3.
 
+ifeq ($(gcc_7_test), $(findstring $(gcc_7_test),$(gcc_version_info)))
+	GCC4=GCC7
+endif
+ifeq ($(gcc_6_test), $(findstring $(gcc_6_test),$(gcc_version_info)))
+	GCC4=GCC6
+endif
 ifeq ($(gcc_5_test), $(findstring $(gcc_5_test),$(gcc_version_info)))
 	GCC4=GCC5
 endif
