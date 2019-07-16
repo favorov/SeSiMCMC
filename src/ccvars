@@ -18,39 +18,12 @@ endif
 
 gcc_version_info=$(shell gcc --version)
 
-gcc_7_test=) 7.
-gcc_6_test=) 6.
-gcc_5_test=) 5.
-gcc_4_test=) 4.
 gcc_3_test=) 3.
 
-ifeq ($(gcc_7_test), $(findstring $(gcc_7_test),$(gcc_version_info)))
-	GCC4=GCC7
-endif
-ifeq ($(gcc_6_test), $(findstring $(gcc_6_test),$(gcc_version_info)))
-	GCC4=GCC6
-endif
-ifeq ($(gcc_5_test), $(findstring $(gcc_5_test),$(gcc_version_info)))
-	GCC4=GCC5
-endif
-ifeq ($(gcc_4_test), $(findstring $(gcc_4_test),$(gcc_version_info)))
-	GCC4=GCC4
-endif
 ifeq ($(gcc_3_test), $(findstring $(gcc_3_test),$(gcc_version_info)))
 	GCC3=GCC3
 endif
 
-ifndef GCC3
-ifndef GCC4
-$(error GCC major version is neither 3 nor 4, gcc --version says:$(gcc_version_info).)
-endif
-endif
-
-ifdef GCC3
-ifdef GCC4
-$(error GCC major version cannot be 3 and 4 at one time)
-endif
-endif
 
 LINKFLAGS=-lm
 DEBUGFLAG=-g
@@ -62,7 +35,7 @@ PARANOIC_FLAG=-Wextra
 MINGW_FLAG=-mno-cygwin
 PPRO_FLAG=-mpentiumpro
 
-ifdef GCC4 
+ifndef GCC3 
 	INCLUDEKEY=-iquote
 	INCLUDECLOSETERM=
 else #GCC3
@@ -70,13 +43,13 @@ else #GCC3
 	INCLUDECLOSETERM= -I-
 endif
 
-ifdef GCC4
+ifndef GCC3
 OMITSYMBOLINFOFLAG=
 # -s is obsoleted for mac, gcc4
 endif
 
 #ifdef CYGWIN
-#ifdef GCC4
+#ifndef GCC3 #actually, it is 4
 #LINKFLAGS=$(LINKGLAGS) -enable-auto-import
 #endif
 #endif
