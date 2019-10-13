@@ -70,15 +70,37 @@ istream & operator>> (istream & is, SequencesPile & sp)
 		getline(is,Buffer);
 		//getline(is,Buffer,'\n');
 
-		if (Buffer[Buffer.size()-1]=='\015')  //we procced possible trailing '^M'
-			Buffer=Buffer.substr(0,Buffer.size()-1);
-		if (Buffer[Buffer.size()-1]=='\012')  //we procced possible trailing '^J'
-			Buffer=Buffer.substr(0,Buffer.size()-1);
+#if __DEBUGLEVEL__ >=5
+		cerr<<"%"<<Buffer<<"%"<<"{"<<Buffer.size()<<"}"<<endl<<flush;
+#endif
+		if(Buffer.size()>0)
+		{
+			if (Buffer[Buffer.size()-1]=='\015')  //we procced possible trailing '^M'
+				Buffer=Buffer.substr(0,Buffer.size()-1);
+#if __DEBUGLEVEL__ >=5
+			cerr<<"@"<<flush;
+#endif
+			if (Buffer[Buffer.size()-1]=='\012')  //we procced possible trailing '^J'
+				Buffer=Buffer.substr(0,Buffer.size()-1);
 
-		if (Buffer[Buffer.size()-1]=='\015')  //we procced possible trailing '^M'
-			Buffer=Buffer.substr(0,Buffer.size()-1);
-		if (Buffer[Buffer.size()-1]=='\012')  //we procced possible trailing '^J'
-			Buffer=Buffer.substr(0,Buffer.size()-1);
+#if __DEBUGLEVEL__ >=5
+			cerr<<"@"<<flush;
+#endif
+			if (Buffer[Buffer.size()-1]=='\015')  //we procced possible trailing '^M'
+				Buffer=Buffer.substr(0,Buffer.size()-1);
+#if __DEBUGLEVEL__ >=5
+			cerr<<"@"<<flush;
+#endif
+			if (Buffer[Buffer.size()-1]=='\012')  //we procced possible trailing '^J'
+				Buffer=Buffer.substr(0,Buffer.size()-1);
+		}	
+#if __DEBUGLEVEL__ >=5
+		cerr<<"@"<<endl<<flush;
+#endif
+#if __DEBUGLEVEL__ >=5
+		cerr<<"*"<<Buffer<<"*"<<endl<<flush;
+		cerr<<"#"<<state<<"#"<<endl<<flush;
+#endif
 
 		switch(state)
 		{
@@ -135,8 +157,10 @@ istream & operator>> (istream & is, SequencesPile & sp)
 			//the sequence has been started
 
 		case reading_sequence:
+#if __DEBUGLEVEL__ >=5
+			cerr<<"#reading-seq"<<flush;
+#endif
 			//now, we are reading a,t,g,c. First, let's reallocate fseq.sequence.
-
 			if (state==reading_sequence) //we came here from switch
 																	 //so, it makes sense to test whether
 																	 //the line is empty or is it
@@ -153,7 +177,6 @@ istream & operator>> (istream & is, SequencesPile & sp)
 			else state=reading_sequence; //we came here from previous case
 																	 //because the line was not empty and not
 																	 //NBRF comment
-
 
 			if (Buffer[0]=='>')
 			{
@@ -181,12 +204,18 @@ istream & operator>> (istream & is, SequencesPile & sp)
 			sequence_text.append(Buffer);
 			//iterator
 
+#if __DEBUGLEVEL__ >=5
+			cerr<<"#"<<endl<<flush;
+#endif
 		case done: //we never jump here :)
 			break;
 
 		}
 		if (state==done)
 		{
+#if __DEBUGLEVEL__ >=5
+			cerr<<"#done#"<<endl<<flush;
+#endif
 			//a record is read
 			sp.names.push_back(name);
 			try {
@@ -225,8 +254,8 @@ istream & operator>> (istream & is, SequencesPile & sp)
 				sp.caps.back()[pos]=0;
 				if ( !sp.mask.back()[pos] && isupper(sp.nucleotides.back()[pos])
 					) sp.caps.back()[pos]=1;
-				//DEBUG
-				//cout<<"\n^^^"<<sp.names.back()<<" "<<pos<<" "<<sp.nucleotides.back()[pos]<<"  "<<sp.caps.back()[pos];
+				//DeBUG-local
+				//cerr<<"\n^^^"<<sp.names.back()<<" "<<pos<<" "<<sp.nucleotides.back()[pos]<<"  "<<sp.caps.back()[pos];
 			};
 #if __DEBUGLEVEL__ >=1
 			cerr<<endl<<flush;
@@ -239,6 +268,7 @@ istream & operator>> (istream & is, SequencesPile & sp)
 			cerr<<endl<<flush;
 			for (unsigned int kk=0;kk<current_length;kk++)
 				cerr<<sp.mask.back()[kk];
+			cerr<<endl<<flush;
 			for (unsigned int kk=0;kk<current_length;kk++)
 				cerr<<sp.caps.back()[kk];
 			cerr<<endl<<".................................................."<<endl<<flush;
@@ -263,7 +293,15 @@ istream & operator>> (istream & is, SequencesPile & sp)
 			//or "*" after previous sequence.
 			//So, the FastAInputStream object has stored the name started with ""
 		}
+
+#if __DEBUGLEVEL__ >=5
+		cerr<<"*"<<Buffer<<"*"<<endl<<flush;
+		cerr<<"$"<<state<<"$"<<endl<<flush;
+#endif
 	}
+#if __DEBUGLEVEL__ >=5
+	cerr<<"returning "<<endl<<flush;
+#endif
 	return is;
 }
 
