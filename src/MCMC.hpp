@@ -1,6 +1,6 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013
-$Id: MCMC.hpp 1904 2013-07-10 01:45:50Z favorov $
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
+$Id$
 \****************************************************************************/
 
 #ifndef _MCMC_HPP

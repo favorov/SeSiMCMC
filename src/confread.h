@@ -1,4 +1,4 @@
-//$Id: confread.h 1014 2009-03-01 16:50:36Z favorov $
+//$Id$
 #ifndef _CONFREAD_H_
 #define _CONFREAD_H_
 

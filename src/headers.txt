@@ -1,6 +1,6 @@
 ******************************************************************************
 SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001
-$Id: headers.txt 1014 2009-03-01 16:50:36Z favorov $
+$Id$
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 The file is general description of header files and containing classes.
 It is referenced in their comments. The file is part of source distribution,

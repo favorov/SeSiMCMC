@@ -1,9 +1,9 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
 APSampler project. (c) A. Favorov 1999-2007
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 For general describtion of the classes declared in the header, see headers.txt 
-$Id: RandomMappings.hpp 1904 2013-07-10 01:45:50Z favorov $
+$Id$
 \****************************************************************************/
 
 #ifndef _RANDOM_MAPPINGS_HPP

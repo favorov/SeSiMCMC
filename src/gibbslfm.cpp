@@ -1,5 +1,5 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
 $Id$
 \****************************************************************************/
 #include <math.h>
@@ -48,7 +48,7 @@ void createFakeExperimentalGappedBunch(SequencesPile &sp,unsigned int be_quiet=0
 void help()
 {
 	cout<<
-	"SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013."<<endl<<
+	"SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019."<<endl<<
 	endl<<
 	"Usage : SeSiMCMC [options] [(--config-file|-f) config-file] < (FastA input)."<<endl<<
 	endl<<

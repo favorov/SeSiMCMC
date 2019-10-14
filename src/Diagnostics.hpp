@@ -2,7 +2,7 @@
 SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2007
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 For general describtion of the classes declared in the header, see headers.txt
-$Id: Diagnostics.hpp 1904 2013-07-10 01:45:50Z favorov $
+$Id$
 \****************************************************************************/
 
 #ifndef _DIAGNOSTICS_HPP_

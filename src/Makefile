@@ -1,6 +1,6 @@
 #****************************************************************************#
 #SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001
-#$Id: Makefile 1903 2013-07-10 01:40:20Z favorov $
+#$Id$
 #****************************************************************************#
 #this file can be started only from parent directory
 
