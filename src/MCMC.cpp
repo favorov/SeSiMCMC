@@ -30,7 +30,6 @@ using namespace std;
 #include "MCMC.hpp"
 #include "Atgc.hpp"
 
-
 extern "C"{
 	#include "Random.h"
 }
