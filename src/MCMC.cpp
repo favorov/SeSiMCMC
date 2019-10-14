@@ -38,7 +38,7 @@ const double pseudocounts_sum_on_annealing=1.5;
 
 //we use mask[][] as test for masked positions
 
-const char * core_rcs_id="$Id$";
+const char * core_git_id="$Id$";
 
 //here, the random generator does exist and is initialised.
 

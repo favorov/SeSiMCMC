@@ -1,6 +1,6 @@
 /****************************************************************************\
 SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013
-$Id: gibbslfm.cpp 1904 2013-07-10 01:45:50Z favorov $
+$Id$
 \****************************************************************************/
 #include <math.h>
 #include <stdlib.h>
@@ -24,7 +24,7 @@ using namespace std;
 #include "Logger.hpp"
 #include "Diagnostics.hpp"
 
-extern char * core_rcs_id;
+extern char * core_git_id;
 
 const char * version_name="SeSiMCMC 4.36, fur Alyza";
 
@@ -68,16 +68,15 @@ void help()
 
 void version()
 {
-	char core_id_string[120];
-	strncpy(core_id_string, core_rcs_id, 119);
+	char core_id_string[120]; //too much but who knows
+	strncpy(core_id_string, core_git_id, 119);
 	core_id_string[119]='\0';
 	char * core_version;
 	strtok(core_id_string," ");
-	strtok(NULL," ");
 	core_version=strtok(NULL," ");
 
 	cout<<version_name<<endl<<
-	"core version is "<<core_version<<endl;
+	"core (MCMC.cpp) git id is "<<core_version<<endl;
 }
 
 struct config_parameters
