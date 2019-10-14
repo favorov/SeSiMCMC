@@ -25,7 +25,6 @@ using namespace std;
 #include "Diagnostics.hpp"
 
 extern char * core_rcs_id;
-extern char * core_rcs_name;
 
 const char * version_name="SeSiMCMC 4.36, fur Alyza";
 

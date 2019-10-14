@@ -41,8 +41,6 @@ const double pseudocounts_sum_on_annealing=1.5;
 
 const char * core_rcs_id="$Id: MCMC.cpp 1904 2013-07-10 01:45:50Z favorov $";
 
-const char * core_rcs_revision="$Revision: 1904 $";
-
 //here, the random generator does exist and is initialised.
 
 LookingForAtgcMotifsMultinomialGibbs::
