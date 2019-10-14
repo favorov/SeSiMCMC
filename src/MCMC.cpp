@@ -1,6 +1,6 @@
 /****************************************************************************\
 SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2013
-$Id: MCMC.cpp 1904 2013-07-10 01:45:50Z favorov $
+$Id$
 \****************************************************************************/
 
 //#define __DEBUGLEVEL__ 5
@@ -36,10 +36,9 @@ extern "C"{
 
 const double pseudocounts_sum_on_annealing=1.5;
 
-
 //we use mask[][] as test for masked positions
 
-const char * core_rcs_id="$Id: MCMC.cpp 1904 2013-07-10 01:45:50Z favorov $";
+const char * core_rcs_id="$Id$";
 
 //here, the random generator does exist and is initialised.
 
