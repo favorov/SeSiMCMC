@@ -56,7 +56,7 @@ LookingForAtgcMotifsMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	Y(2*(sp.max_length+1)),   //the size is enought even for compements counting
 	Sequences(sp),
 	letters_in_alphabet(4),
@@ -176,7 +176,7 @@ LookingForAtgcMotifsMultinomialGibbs::
 	}
 }
 
-unsigned int LookingForAtgcMotifsMultinomialGibbs::reinit(unsigned int len) throw (DumbException)
+unsigned int LookingForAtgcMotifsMultinomialGibbs::reinit(unsigned int len)
 {
 	current_sequence_index=0;
 	if(!be_quiet)
@@ -200,7 +200,7 @@ LookingForAtgcMotifsInOneThreadMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	LookingForAtgcMotifsMultinomialGibbs
 		(
 			sp,
@@ -235,7 +235,7 @@ LookingForAtgcMotifsInTwoThreadsMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	LookingForAtgcMotifsMultinomialGibbs
 		(
 			sp,
@@ -270,7 +270,7 @@ LookingForAtgcPalindromesMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	LookingForAtgcMotifsMultinomialGibbs
 		(
 			sp,
@@ -304,7 +304,7 @@ LookingForAtgcRepeatsInOneThreadMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	LookingForAtgcMotifsInOneThreadMultinomialGibbs
 		(
 			sp,
@@ -339,7 +339,7 @@ LookingForAtgcRepeatsInTwoThreadsMultinomialGibbs::
 			const vector<double> & background_opt,
 			unsigned short be_quiet_opt,
 			ostream & logstream
-		) throw (DumbException):
+		):
 	LookingForAtgcMotifsInTwoThreadsMultinomialGibbs
 		(
 			sp,
@@ -432,9 +432,7 @@ double long LookingForAtgcMotifsMultinomialGibbs::find_maximum
 			//unsigned int annealings_with_different_length,
 			//unsigned int reanneal_if_all_chains_fail,
 			unsigned long max_steps
-		) throw (DumbException,LostInSpaceOnTracing,AllInitialAnnealingAttemptsFailed,
-						LostInSpaceOnSecondaryAnnealing,TooMuchChainsFailed,TimeLimitException,
-						TooMuchChainsFailed,LenghtRequirementsFailed,TooResrtrictiveCapsMode)
+		) 
 {
 
 	if (time_limit && timer.how_long()>(double)time_limit)
@@ -865,8 +863,8 @@ double long LookingForAtgcMotifsMultinomialGibbs::find_maximum
 					}
 					else
 						local_cycles_with_minor_change=0;
-						state_before=theState;
-						//if(!be_quiet) log_stream<<"Product="<<scal_prod<<endl<<flush;
+					state_before=theState;
+					//if(!be_quiet) log_stream<<"Product="<<scal_prod<<endl<<flush;
 					}
 					//site_positions
 				else //information
@@ -1289,7 +1287,7 @@ double LookingForAtgcMotifsMultinomialGibbs::find_maximum_slowly
 			const LogRecorder & timer,
 			Diagnostics & diagnostics,
 			unsigned long max_steps
-		) throw(DumbException,TimeLimitException,LenghtRequirementsFailed,TooResrtrictiveCapsMode,SlowSearchFailed)
+		) 
 {
 	MarkovChainState MaxMCS(sequences_count);
 	unsigned int at_least_one_succeeded=0;
@@ -1999,7 +1997,7 @@ long double LookingForAtgcMotifsMultinomialGibbs::
 				unsigned long local_steps_made,
 				unsigned long adjustments_made,
 				unsigned short test_gaps
-			) throw (DumbException)
+			)
 {
 	long double F,G;
 	unsigned short success=0;
@@ -2054,7 +2052,7 @@ long double LookingForAtgcMotifsMultinomialGibbs::
 			unsigned short test_gaps,
 			unsigned long local_steps_made,
 			unsigned long adjustments_made
-		) throw (DumbException)
+		)
 {
 	double orig_info;
 	double long F;
@@ -2556,7 +2554,7 @@ unsigned int LookingForAtgcMotifsMultinomialGibbs::
 			//get the distribution from here.
 			//the vector it to be at least
 			//last_possible_position-first_possible_position+1
-		)throw (DumbException)
+		)
 {
 	double draw=uni();
 	double sum=0.;

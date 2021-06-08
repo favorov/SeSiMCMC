@@ -53,8 +53,7 @@ public:
 		return EntropyThreshold(Symbols);
 	};
 
-	double long EntropyDistanceFrom(const SymbolsCounter::PWM &) const
-			throw (SymbolsCounter::OtherLengthPWMException);
+	double long EntropyDistanceFrom(const SymbolsCounter::PWM &) const;
 	//count distance from parameter to instance distribution
 
 	const vector<unsigned short> & if_a_strong_position; //0 or 1
@@ -261,7 +260,6 @@ double long KullbakCounter::EntropyThreshold
 inline
 double long
 KullbakCounter::EntropyDistanceFrom(const SymbolsCounter::PWM &pwm) const
-		throw (SymbolsCounter::OtherLengthPWMException)
 {
 	if (Symbols.pattern_length!=pwm.pattern_length)
 		throw (* new SymbolsCounter::OtherLengthPWMException

@@ -80,18 +80,14 @@ public:
 	unsigned int remove_garbage(unsigned int min_length_to_remain,caps_mode caps);
 	//removes all sequences which length is less or equal to
 	//min_length_to_remain; returns the count of the removed sequences
-	void put_mask(const Profile & result,double masked_part)
-		throw (DumbException)
-			;
+	void put_mask(const Profile & result,double masked_part);
 	//we rely of fact thet 0<masked_part<1
 };
 
 
-ostream & operator<< (ostream & os, const SequencesPile & sp) 
-												throw (AtgcException); 
+ostream & operator<< (ostream & os, const SequencesPile & sp); 
 
-istream & operator>> (istream & is, SequencesPile & sp) 
-												throw (AtgcException, IOStreamException); 
+istream & operator>> (istream & is, SequencesPile & sp); 
 
 
 inline

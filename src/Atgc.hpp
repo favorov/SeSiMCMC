@@ -56,8 +56,8 @@ const char atgc[5]={'x','a','t','g','c'};
 class Atgc
 {
 public:
-	static char ushort2atgc(unsigned short symbol) throw (AtgcException);
-	static unsigned short atgc2ushort(char letter) throw (AtgcException);
+	static char ushort2atgc(unsigned short symbol);
+	static unsigned short atgc2ushort(char letter);
 	static unsigned short complement(unsigned short sym);
 	static char complement(char sym);
 
@@ -87,17 +87,17 @@ public:
 			(
 				 const vector<unsigned short> & source, 
 				 string & dest=*new(string)
-			)	throw (AtgcException);
+			);
 
 	static vector<unsigned short> & string2atgc 
 			(
 				 const string & source, 
 				 vector<unsigned short> & dest=*new (vector<unsigned short>)
-			) throw (AtgcException);
+			);
 };
 
 inline
-unsigned short Atgc::atgc2ushort(char letter) throw (AtgcException)
+unsigned short Atgc::atgc2ushort(char letter) 
 {
 	char a=tolower(letter);
 	if (a=='a') return 1;
@@ -158,7 +158,7 @@ unsigned short Atgc::atgc2ushort(char letter) throw (AtgcException)
 }
 
 inline
-char Atgc::ushort2atgc(unsigned short symbol) throw (AtgcException)
+char Atgc::ushort2atgc(unsigned short symbol)
 {
 	if (symbol>MaxAtgcSymbol)
 	{
@@ -293,7 +293,7 @@ string & Atgc::atgc2string
 (
 	 const vector<unsigned short> & source, 
 	 string & dest
-)	throw (AtgcException)
+)	
 {
 	dest="";
 	vector<unsigned short>::const_iterator r=source.begin();
@@ -307,7 +307,7 @@ vector<unsigned short> & Atgc::string2atgc
 			(
 				 const string & source, 
 				 vector<unsigned short> & dest
-			) throw (AtgcException)
+			) 
 {
 	dest.clear();
 	string::const_iterator r=source.begin();

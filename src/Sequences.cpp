@@ -1,5 +1,5 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2021
 $Id$
 \****************************************************************************/
 
@@ -22,7 +22,6 @@ using namespace std;
 //#define __DEBUGLEVEL__ 2
 
 ostream & operator<< (ostream & os, const SequencesPile & sp)
-												throw (AtgcException)
 {
 	for (unsigned int i=0;i<sp.size();i++)
 	{
@@ -35,7 +34,6 @@ ostream & operator<< (ostream & os, const SequencesPile & sp)
 }
 
 istream & operator>> (istream & is, SequencesPile & sp)
-												throw (AtgcException, IOStreamException)
 {
 //it works with c-style reding. Let it be.
 //Structure:
@@ -308,7 +306,6 @@ istream & operator>> (istream & is, SequencesPile & sp)
 void SequencesPile::put_mask(const Profile & results,
 		double masked_part)
 //we rely of fact thet 0<masked_part<1
-	throw (DumbException)
 {
 	unsigned int unmasked_wing,mask_size;
 	mask_size=(int)((double)results.site_length*masked_part);

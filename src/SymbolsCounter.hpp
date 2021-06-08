@@ -214,7 +214,7 @@ public:
 		unsigned int letters_in_alphabet;
 		unsigned int pattern_length;
 		PWM(const SymbolsCounter & sc);
-		PWM & operator = (const SymbolsCounter & sc) throw (OtherLengthPWMException);
+		PWM & operator = (const SymbolsCounter & sc);
 		double foreground_probability(unsigned int m,unsigned int n) const;
 	};
 	//PWM
@@ -224,7 +224,7 @@ public:
 		unsigned int letters_in_alphabet_par,
 		unsigned short if_common_background=0,
 		const vector<double> & background_opt =*new vector<double>
-	) throw (DumbException);
+	);
 
 	//standard ?
 	friend class SymbolsCounter::PWM;
@@ -244,7 +244,7 @@ public:
 		return total_letters;
 	}
 
-	virtual void calculate (const MarkovChainState & theState) throw(AtgcException);
+	virtual void calculate (const MarkovChainState & theState);
 	//gets the pattern_count and nonpattern_count values from the full dataset
 	//to get the pattern_count and nonpattern_count for the dataset
 	//excluding current sequence use exclude_sequence.
@@ -255,7 +255,7 @@ public:
 			(
 			 	const MarkovChainState & theState,
 				unsigned int sequence
-			) throw(AtgcException);
+			);
 	//All we do is removal of sequence from the sum.
 	//Works only if the pattern_length is the same for
 	//the state and the SymbolsCounter.
@@ -267,7 +267,7 @@ public:
 			(
 			 	const MarkovChainState & theState,
 				unsigned int sequence
-			) throw(AtgcException);
+			);
 	//All we do is addition of current_sequence from the sum in
 	//accordance with theState.
 	//Works only if the pattern_length is the same for
@@ -275,7 +275,7 @@ public:
 	//
 
 	virtual void calculate_incrementally_after_3_end_shift
-								(const MarkovChainState & theState) throw(AtgcException);
+								(const MarkovChainState & theState);
 	//an analog of calculate, but supposes that the last action was
 	//calculate for preceding theState (or any equvalent, like
 	//calculate+exclude_sequence+include_sequence)
@@ -366,7 +366,7 @@ public:
 		unsigned int letters_in_alphabet_par,
 		unsigned short if_common_background,
 		const vector<double> & background_opt
-	) throw (DumbException);
+	);
 	virtual double foreground_probability(unsigned int m,unsigned int n)
 				const;
 	//n-th letter in m-th motif position probability
@@ -412,7 +412,7 @@ public:
 		unsigned int letters_in_alphabet_par,
 		unsigned short if_common_background,
 		const vector<double> & background_opt
-	) throw (DumbException);
+	);
 
 	virtual double foreground_probability(unsigned int m,unsigned int n)
 				const;
@@ -464,7 +464,7 @@ public:
 		const MarkovChainState & mcs,
 		unsigned short if_common_background_par,
 		const vector<double> & background_opt
-	) throw(DumbException);
+	);
 
 	void current_sequence_was_complemented(unsigned int seq_no);
 	//
@@ -484,19 +484,19 @@ public:
 //that the a sequence is started to be treat as complemented
 //by call of current_sequence_was_complemented after
 //the MarkovChainState change.
-	virtual void calculate (const MarkovChainState & theState) throw(AtgcException);
+	virtual void calculate (const MarkovChainState & theState);
 	virtual void exclude_sequence
 			(
 			 	const MarkovChainState & theState,
 				unsigned int sequence
-			) throw(AtgcException);
+			);
 	virtual void include_sequence
 			(
 			 	const MarkovChainState & theState,
 				unsigned int sequence
-			) throw(AtgcException);
+			);
 	virtual void calculate_incrementally_after_3_end_shift
-								(const MarkovChainState & theState) throw(AtgcException);
+								(const MarkovChainState & theState);
 	bool operator== (const AtgcSymbolsCounter & sc1) const;
 
 	virtual void print(ostream & o) const;
@@ -557,7 +557,7 @@ public:
 		const MarkovChainState & mcs,
 		unsigned short if_common_background_par,
 		const vector<double> & background_opt
-	) throw(DumbException);
+	);
 
 	virtual double foreground_probability(unsigned int m,unsigned int n)
 				const;

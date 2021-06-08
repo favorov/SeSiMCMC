@@ -27,7 +27,6 @@ SymbolsCounter::PWM::PWM(const SymbolsCounter &sc):
 }
 
 SymbolsCounter::PWM & SymbolsCounter::PWM::operator=(const SymbolsCounter &sc)
-		throw (SymbolsCounter::OtherLengthPWMException)
 {
 	if (pattern_length!=sc.pattern_length)
 	{
@@ -57,7 +56,7 @@ SymbolsCounter::SymbolsCounter
 	unsigned int letters_in_alphabet_par,
 	unsigned short if_common_background_par,
 	const vector<double> & background
-) throw (DumbException):
+):
 	Sequences(sp),
 	letters_in_alphabet(letters_in_alphabet_par),
 	pattern_length(0),
@@ -152,7 +151,6 @@ double SymbolsCounter::change_pseudocounts_sum (double sum)
 };
 
 void SymbolsCounter::calculate (const MarkovChainState & theState)
-	throw(AtgcException)
 	//gets the pattern_count and nonpattern_count values from the full dataset
 	//to get the pattern_count and nonpattern_count for the dataset
 	//excluding current sequence use exclude_sequence.
@@ -220,7 +218,7 @@ void SymbolsCounter::exclude_sequence
 		(
 			const MarkovChainState & theState,
 			unsigned int sequence
-		) throw(AtgcException)
+		)
 //All we do is removal of sequence from the sum.
 //Works only if the pattern_length is the same for
 //the state and the SymbolsCounter.
@@ -270,7 +268,7 @@ void SymbolsCounter::include_sequence
 		(
 			const MarkovChainState & theState,
 			unsigned int sequence
-		) throw(AtgcException)
+		)
 //All we do is addition of current_sequence from the sum in
 //accordance with theState.
 //Works only if the pattern_length is the same for
@@ -316,7 +314,7 @@ void SymbolsCounter::include_sequence
 
 
 void SymbolsCounter::calculate_incrementally_after_3_end_shift
-							(const MarkovChainState & theState) throw(AtgcException)
+							(const MarkovChainState & theState)
 //gets the pattern_count and nonpattern_count values from the full dataset
 //after a shift of all motifs to right for 1 position.
 //theState is the state after the shift.
@@ -556,7 +554,7 @@ SymmetricSymbolsCounter::SymmetricSymbolsCounter
 		unsigned int letters_in_alphabet_par,
 		unsigned short if_common_background_par=0,
 		const vector<double> & background=*new vector<double>
-	) throw (DumbException):
+	):
 	SymbolsCounter(sp,letters_in_alphabet_par,if_common_background_par)
 {
 	NegativeEntropyValue=0;
@@ -624,7 +622,7 @@ DoubletSymbolsCounter::DoubletSymbolsCounter
 		unsigned int letters_in_alphabet_par,
 		unsigned short if_common_background_par=0,
 		const vector<double> & background=*new vector<double>
-	) throw (DumbException):
+	):
 	SymbolsCounter(sp,letters_in_alphabet_par,if_common_background_par,background)
 {
 	NegativeEntropyValue=0;
@@ -707,7 +705,7 @@ DoubletAtgcSymbolsCounter::DoubletAtgcSymbolsCounter
 		const MarkovChainState & mcs,
 		unsigned short if_common_background_par=0,
 		const vector<double> & background=*new vector<double>
-	) throw (DumbException):
+	):
 	AtgcSymbolsCounter(sp,mcs,if_common_background_par,background)
 {
 	NegativeEntropyValue=0;
@@ -792,7 +790,7 @@ AtgcSymbolsCounter::AtgcSymbolsCounter
 	const MarkovChainState & mcs,
 	unsigned short if_common_background_par=0,
 	const vector<double> & background=*new vector<double>
-) throw(DumbException) :
+):
 SymbolsCounter(sp,4,if_common_background_par,background),
 counted_as_complement(sp.size())
 {
@@ -843,7 +841,6 @@ void AtgcSymbolsCounter::current_sequence_was_complemented(unsigned int seq_no)
 }
 
 void AtgcSymbolsCounter::calculate (const MarkovChainState & theState)
-	throw(AtgcException)
 {
 
 	//we suppose that pattern length is critically less than nonpattern,
@@ -939,7 +936,7 @@ void AtgcSymbolsCounter::exclude_sequence
 		(
 			const MarkovChainState & theState,
 			unsigned int sequence
-		) throw(AtgcException)
+		)
 {
 	if (!if_common_background)
 		for (unsigned short letter=1;letter<=letters_in_alphabet;letter++)
@@ -1002,7 +999,7 @@ void AtgcSymbolsCounter::include_sequence
 		(
 			const MarkovChainState & theState,
 			unsigned int sequence
-		) throw(AtgcException)
+		)
 {
 	if (!if_common_background)
 		for (unsigned short letter=1;letter<=letters_in_alphabet;letter++)
@@ -1063,7 +1060,7 @@ void AtgcSymbolsCounter::include_sequence
 }
 
 void AtgcSymbolsCounter::calculate_incrementally_after_3_end_shift
-							(const MarkovChainState & theState) throw(AtgcException)
+							(const MarkovChainState & theState)
 //gets the pattern_count and nonpattern_count values from the full dataset
 //after a shift of all motifs to right for 1 position.
 //theState is the state after the shift.

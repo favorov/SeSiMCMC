@@ -20,7 +20,7 @@ OPTIMISE=YES
 
 include ccvars
 
-.PHONY: all objs clean zip cleanzip
+.PHONY: all objs clean  
 
 vpath %.c $(srcdirlist)
 vpath %.cpp $(srcdirlist)
@@ -69,17 +69,4 @@ $(od)/gibbslfm.o: gibbslfm.cpp Sequences.hpp Exception.hpp Atgc.hpp Random.h \
 clean:
 	rm -f $(OBJS)
 	rm -r -f *~
-
-cleanzip:
-	rm -f $(exename).zip
-
-zip: $(exename).zip
-
-$(exename).zip: $(exename).exe readme 
-	rm -f $(exename).zip
-	cp -f `which cygwin1.dll` .
-	cp -f `which cyggcc_s-1.dll` .
-	cp -f `which cygstdc++-6.dll` .
-	zip -D $(exename).zip $(exename).exe readme cygwin1.dll cyggcc_s-1.dll cygstdc++-6.dll
-	rm -f cygwin1.dll cyggcc_s-1.dll cygstdc++-6.dll
 

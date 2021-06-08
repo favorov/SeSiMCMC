@@ -55,7 +55,7 @@ public:
 	unsigned int spacer_3_end() const {return spacer_3;}   //spacer_3
 	unsigned int spacer_length_asked() const {return spacer_len_asked;}
 	//spacer_length aksed by last SetSymmetricGap
-	void trim (unsigned int left, unsigned int right, const SequencesPile & sp) throw (DumbException)
+	void trim (unsigned int left, unsigned int right, const SequencesPile & sp)
 	{
 		if (spaced && (left != right))
 		{
@@ -223,8 +223,7 @@ public:
 	void Dump(ostream & os) const;
 
 friend
-	istream & operator>> (istream & in, MarkovChainState & mcs)
-																										throw (IOStreamException);
+	istream & operator>> (istream & in, MarkovChainState & mcs);
 };
 
 inline
@@ -488,7 +487,6 @@ void MarkovChainState::Dump(ostream & o) const
 }
 inline
 istream & operator>> (istream & in, MarkovChainState & mcs)
-																										throw (IOStreamException)
 {
 //We suppose that
 //1)

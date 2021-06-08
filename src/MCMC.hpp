@@ -169,7 +169,7 @@ protected:
 				//get the distribution from here.
 				//the vector it to be at least
 				//last_possible_position-first_possible_position+1
-			)throw (DumbException);
+			);
 
 	virtual void calculate_position_weights
 			(
@@ -214,7 +214,7 @@ protected:
 				unsigned long local_steps_made,
 				unsigned long adjustments_made,
 				unsigned short test_gaps
-			) throw (DumbException);
+			);
 
 	long double PositionAndLengthAdjustment
 			(
@@ -223,7 +223,7 @@ protected:
 				unsigned short test_gaps,
 				unsigned long local_steps_made,
 				unsigned long adjustments_made
-			) throw (DumbException);
+			);
 	//they return the resulting
 	//Negative_Entropy_with_defined_patterns_per_pattern_position.
 	//It is useful not to recount it.
@@ -351,9 +351,9 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream
-	) throw (DumbException);
+	);
 
-	unsigned int reinit(unsigned int len) throw (DumbException);
+	unsigned int reinit(unsigned int len);
 
 	double long find_maximum
 			(
@@ -377,9 +377,7 @@ public:
 				const LogRecorder & timer,
 				//unsigned int reanneal_if_all_chains_fail=0,
 				unsigned long max_steps=0ul-1
-			) throw (DumbException,LostInSpaceOnTracing,AllInitialAnnealingAttemptsFailed,
-					LostInSpaceOnSecondaryAnnealing,TooMuchChainsFailed,TimeLimitException,
-					LenghtRequirementsFailed,TooResrtrictiveCapsMode);
+			);
 
 	double find_maximum_slowly
 			(
@@ -401,7 +399,7 @@ public:
 				const LogRecorder & timer,
 				Diagnostics & diags,
 				unsigned long max_steps=0ul-1
-			) throw(DumbException,TimeLimitException,LenghtRequirementsFailed,TooResrtrictiveCapsMode,SlowSearchFailed);
+			);
 
 	double long Negative_Entropy_with_defined_patterns_per_pattern_position
 	//it never changes Symbols, but it supposes it to be
@@ -595,7 +593,7 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream=cerr
-	) throw (DumbException);
+	);
 
 
 };
@@ -663,7 +661,7 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream=cerr
-	) throw (DumbException);
+	);
 
 };
 
@@ -715,7 +713,7 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream=cerr
-	) throw (DumbException);
+	);
 
 };
 
@@ -745,7 +743,7 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream=cerr
-	) throw (DumbException);
+	);
 };
 
 class LookingForAtgcRepeatsInTwoThreadsMultinomialGibbs:
@@ -774,7 +772,7 @@ public:
 		const vector<double> & background_opt,
 		unsigned short be_quiet,
 		ostream & logstream=cerr
-	) throw (DumbException);
+	);
 };
 
 
