@@ -1,0 +1,68 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="description" content="The SeSiMCMC project homepage">
+   <meta name="keywords" content="SeSiMCMC, MCMC, Markov Chain Monte-Carlo, Gibbs sampler, DNA motif, sequence similarities, motif length determination, weight matrix, Kullbak entropy distance, upstream regions, coregulation">
+   <meta name="owner" content="favorov@sensi.org">
+   <title>Yet Another Digging For DNA Motifs Gibbs Sampler (SeSiMCMC)</title>
+</head>
+<body bgcolor=white background="back5l24.gif">
+<h2>Yet Another Digging For DNA Motifs Gibbs Sampler (SeSiMCMC) page</h2>
+<p><font size=+1>
+
+<h3><a href=http://bioinform.genetika.ru>Bioinformatics Laboratory, State Scientific Centre GOSNIIGenetika, Moscow</a></h3>
+
+<p>The Sequence Similarities by Markov Chain Monte Carlo (SeSiMCMC) algorithm finds DNA motifs of <i>unknown length</i> and complicated structure, such as <b>direct repeats</b> or <b>palindromes</b> with <i>variable spacers</i> in the middle in a set of unaligned DNA sequences. It uses an improved motif length estimator and careful Bayesian analysis to consider site absence in a sequence.</p>
+
+<p>The algorithm, the software and its application description are published in <a href=http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Citation&list_uids=15728117><i>Bioinformatics</i>, 2005, <b>21</b>(10):2240-2245</a>. Here are supplementary tables <a href="bioinf-supplement/Supplementary Table 1.html">1</a>, <a href="bioinf-supplement/Supplementary Table 2.html">2</a>, <a href="bioinf-supplement/Supplementary Table 3.html">3</a> and <a href="bioinf-supplement/Supplementary Table 4.html">4</a> for the paper.</p>
+<p>A "who-cite-us" list as shown by the <a href=http://scholar.google.com/scholar?cites=3805368761895482616&as_sdt=2005&sciodt=0,5&hl=en>Google Scholar</a>.</p>
+
+<p>A comparison of a set of motif identifiers, including our SeSiMCMC algorithm, has been published in <a href=http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Citation&list_uids=15637633><i>Nature Biotechnology</i>, 2005, <b>23</b>(1):137-144</a>.
+	
+<p>SeSiMCMC is involved in  <a href=http://autosome.ru/DMMPMM./>DMMPMM pipeline</a>. The pipeline is described in <a href=http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Citation&list_uids=19605419><i>Bioinformatics</i>, 2009, <b>epub Jul 15</b></a>.
+
+<hr>
+<h3>
+<a href=/cgi-bin/SeSiMCMC/gibbslfm.pl?action=form>Here is the www interface to the SeSiMCMC sampler</a>.
+</h3>
+
+</font>
+<p>
+The latest (and, possibly, final) release of the sofware (version <b>4.36</b>) was made at <b>2013-07-07</b>.
+</p>
+<hr>
+<p>
+<a href=examples/index.html>Some results of the regulatory sites identification results are here.</a>
+</p>
+<p>
+<a href=info.html>Click here for additional information about the project.</a>
+</p>
+<p>
+The source code <a href=src/SeSiMCMC_4_36.tgz> is available here</a> under the <a href=http://opensource.org/licenses/mit-license.php>MIT licence</a>. The options are expalined in the <a href=/cgi-bin/SeSiMCMC/gibbslfm.pl?action=cat&source=readme&format80=yes>readme file</a>. Use GNU make to compile.
+</p>
+<p>
+<a href=refs.html>Literture references.</a>
+</p>
+<p>
+<a href=http://autosome.ru/ChIPMunk>Our ChIPMunk motif discovery tool for huge datasets and ChIP-Seq data processing.</a>
+</p>
+<p>
+Please <A href=mailto:favorov@sensi.org>mail me</a> all your bug reports and requires.</p>
+<hr>
+<p>
+Thanks to Ludmila Danilova and to Anna Gerasimova for useful discussion and assistance with the data. Thanks to Elana Fertig for help in text editing. This research is partially supported by grants from the Howard Hughes Medical Institute (55000309 to M. Gelfand), Ludwig Cancer Research Institute (CRDB RBO-1268 to M. Gelfand), the Russian Foundation of Basic Research (02-04-49111 and 04-04-49601 to V. Makeev; 07-04-01623 to A. Favorov), the Russian Academy of Sciences (Programs 'Molecular and Cellular Biology', project #10, and 'Origin and Evolution of The Biosphere') and by RF State Contract #43.073.1.1.1501. Thanks to <color='green'><a href="http://members.aol.com/_ht_a/Cyrion7/celtic/index.htm" color='green'>
+Celtic Web Art</a></color> for the background image.
+</p>
+<p align=center> Alexander Favorov.</p>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7441172-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+
+
