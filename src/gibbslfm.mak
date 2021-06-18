@@ -1,5 +1,5 @@
 #****************************************************************************#
-#SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001
+#SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2021
 #$Id$
 #****************************************************************************#
 
@@ -71,4 +71,5 @@ clean:
 	rm -r -f *~
 
 tgz:
-	tar --exclude *~ --exclude *tgz -czvf ../www/src/SeSiMCMC.tgz ./* obj
+	rm -f ../www/src/SeSiMCMC.tgz
+	tar --exclude *~ --exclude *tgz --exclude *o --exclude *exe -czvf ../www/src/SeSiMCMC.tgz ./* obj

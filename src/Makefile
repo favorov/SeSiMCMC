@@ -5,7 +5,7 @@
 #this file can be started only from parent directory
 
 
-.PHONY:	all tests objs clean zip cleanzip
+.PHONY:	all tests objs clean tgz tests
 
 all: ccvars gibbslfm.mak
 	@if [ ! -d ./obj ]; then mkdir ./obj && echo "Creating ./obj...";fi
