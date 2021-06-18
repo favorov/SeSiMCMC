@@ -20,7 +20,7 @@ OPTIMISE=YES
 
 include ccvars
 
-.PHONY: all objs clean  
+.PHONY: all objs clean tgz 
 
 vpath %.c $(srcdirlist)
 vpath %.cpp $(srcdirlist)
@@ -70,3 +70,5 @@ clean:
 	rm -f $(OBJS)
 	rm -r -f *~
 
+tgz:
+	tar --exclude *~ --exclude *tgz -czvf ../www/src/SeSiMCMC.tgz ./* obj

@@ -14,11 +14,8 @@ all: ccvars gibbslfm.mak
 clean:
 	$(MAKE) -f gibbslfm.mak clean
 
-zip:
-	$(MAKE) -f gibbslfm.mak zip
-
-cleanzip:
-	$(MAKE) -f gibbslfm.mak cleanzip
+tgz:
+	$(MAKE) -f gibbslfm.mak tgz
 
 tests:
 	$(MAKE) -f routine-tests/AtgcTest.mak
