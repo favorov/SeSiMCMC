@@ -1,5 +1,5 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2021
 APSampler project. (c) A. Favorov 1999-2007
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 For general describtion of the classes declared in the header, see headers.txt 

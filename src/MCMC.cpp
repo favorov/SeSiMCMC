@@ -1,5 +1,5 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2019
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2021
 $Id$
 \****************************************************************************/
 
