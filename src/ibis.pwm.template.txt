@@ -1,0 +1,11 @@
+>TF1 pwmname1
+freq_a freq_c freq_g freq_t
+...
+freq_a freq_c freq_g freq_t
+
+>TF2 pwmname2
+freq_a freq_c freq_g freq_t
+...
+freq_a freq_c freq_g freq_t
+
+
