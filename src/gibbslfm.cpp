@@ -1,5 +1,5 @@
 /****************************************************************************\
-SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2021
+SeSiMCMC. Looking - for - motifs by MCMC project. (c) A. Favorov 2001-2024
 $Id$
 \****************************************************************************/
 #include <math.h>
@@ -27,7 +27,7 @@ using namespace std;
 
 extern char * core_git_id;
 
-const char * version_name="SeSiMCMC 4.36+, fur Alyza";
+const char * version_name="SeSiMCMC 4.36.1, fur Alyza";
 
 extern "C"
 {
