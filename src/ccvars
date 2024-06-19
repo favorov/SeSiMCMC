@@ -59,7 +59,8 @@ ifndef PROFFLAG
 endif
 
 CCFLAGS:=-c -pipe -Wall $(includeflags)
-CPPFLAGS:=-c -pipe -ffor-scope -Wall $(includeflags)
+#  CPPFLAGS:=-c -pipe -ffor-scope -Wall $(includeflags)
+CPPFLAGS:=-c -pipe -std=c++14 -Wall $(includeflags)
 
 ifdef PARANOIC
  CCFLAGS:=$(CCFLAGS) $(PARANOIC_FLAG) 
