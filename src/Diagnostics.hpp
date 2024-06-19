@@ -47,27 +47,30 @@ ostream & operator << (ostream & o, const Diagnostics & d)
 }
 
 inline void Diagnostics::do_text_output(ostream &o) const
-{
-	for (string::iterator it=str().begin();it<str().end();it++) o<<*it;
+{ 
+	auto str = ostringstream::str();
+	for(const auto& val: str) o<<val;
 }
 
 inline void Diagnostics::do_comment_output(ostream &o) const
 {
 	o<<"#";
-	for (string::iterator it=str().begin();it<str().end();it++)
+	auto str = ostringstream::str();
+	for(const auto& val: str)
 	{
-		o<<*it;
-		if (*it == '\n') o<<"#";
+		o<<val;
+		if (val == '\n') o<<"#";
 	}
 }
 
 inline void Diagnostics::do_html_output(ostream &o) const
 {
 	o<<"<TT>"<<endl;
-	for (string::iterator it=str().begin();it<str().end();it++)
+	auto str = ostringstream::str();
+	for(const auto& val: str)
 	{
-		o<<*it;
-		if (*it == '\n') o<<"<br>\n";
+		o<<val;
+		if (val == '\n') o<<"<br>\n";
 	}
 	o<<"</TT>"<<endl;
 }
@@ -82,7 +85,8 @@ inline void Diagnostics::do_xml_output(ostream &o) const
 	case fatal: o<<" status=\"fatal\"";break;
 	}
 	o<<">"<<endl;
-	for (string::iterator it=str().begin();it<str().end();it++) o<<*it;
+	auto str = ostringstream::str();
+	for(const auto& val: str) o<<val;
 	o<<"</comment>"<<endl;
 }
 #endif /*_DIAGNOSTICS_HPP_*/
