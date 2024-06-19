@@ -15,6 +15,7 @@ $Id$
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <functional>
 using namespace std;
 
 #include "Sequences.hpp"
@@ -2614,7 +2615,7 @@ int main(int argc, char ** argv)
 			config.background[2]=background_G;
 			config.background[3]=background_C;
 			if ( find_if(config.background.begin(),config.background.end(),
-					bind2nd(less_equal<double>(),0))!=
+					bind(less_equal<double>(),placeholders::_1,0))!=
 						config.background.end())
 			{
 				*log_file_ptr<<"You have given me a nonpositive background counter."
