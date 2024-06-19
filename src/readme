@@ -139,12 +139,21 @@ Time limit in seconds. If exceeded, the program stops and shows the diagnostics.
 
 2. Options which affect output.
 
-
 -in name
 --input-name name
 --input-file-name name
 
 The file name to be written to the output header. The default is "-i" parameter value.
+
+
+-tf TF
+--tf-name TF
+
+The name of the TF to be written to output
+
+
+--motif-name-suffix
+--pwm-ibis
 
 
 --output-tables
