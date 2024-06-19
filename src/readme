@@ -145,15 +145,18 @@ Time limit in seconds. If exceeded, the program stops and shows the diagnostics.
 
 The file name to be written to the output header. The default is "-i" parameter value.
 
+--pwm-ibis-2024
+
+Outputs the PWM in IBIS 2024 challenge format.
 
 -tf TF
 --tf-name TF
 
-The name of the TF to be written to output
-
+The name of the TF to be written to output. Reqyired for --pwm-ibis-2024
 
 --motif-name-suffix
---pwm-ibis
+
+The name field for ibis is TF_suffix. The default contatins "SeSiMCMC_", input file name, input file size and "_I" as the pwm number.
 
 
 --output-tables
