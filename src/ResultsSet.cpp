@@ -1042,7 +1042,7 @@ ostream & Profile::ibis_pwm_output (ostream & o, const string & TF, const string
 		//o<<"#  a         t         g         c"<<endl;
 		//o<<"#  "<<order.letter(1)<<"         "<<order.letter(2)<<"         "<<order.letter(3)<<"         "<<order.letter(4)<<endl;
     o<<">"<<TF<<" "<<TF<<suffix<<endl;	
-    o<<"#  "<<order.letter(1)<<"         "<<order.letter(2)<<"         "<<order.letter(3)<<"         "<<order.letter(4)<<endl;
+    //o<<"#  "<<order.letter(1)<<"         "<<order.letter(2)<<"         "<<order.letter(3)<<"         "<<order.letter(4)<<endl;
     for (unsigned int j=0;j<site_length;j++)
     {
         if (spaced_sites && j>=spacer_5_end && j<=spacer_3_end)
