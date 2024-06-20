@@ -335,6 +335,7 @@ public:
 	ostream & html_output (ostream & o) const;
 	ostream & short_html_output (ostream & o) const;
 	ostream & xml_output (ostream & o, const string & id, const string & InputFileName) const;
+	ostream & ibis_pwm_output (ostream & o, const std::string & TF_name,const std::string & suffix) const;
 };
 
 

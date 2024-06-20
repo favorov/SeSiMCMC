@@ -1034,3 +1034,40 @@ ostream & Profile::xml_output (ostream & o, const string & id, const string & In
 	return o;
 }
 
+
+
+ostream & Profile::ibis_pwm_output (ostream & o, const string & TF, const string & suffix) const
+{
+
+		//o<<"#  a         t         g         c"<<endl;
+		//o<<"#  "<<order.letter(1)<<"         "<<order.letter(2)<<"         "<<order.letter(3)<<"         "<<order.letter(4)<<endl;
+    o<<">"<<TF<<" "<<TF<<suffix<<endl;	
+    o<<"#  "<<order.letter(1)<<"         "<<order.letter(2)<<"         "<<order.letter(3)<<"         "<<order.letter(4)<<endl;
+    for (unsigned int j=0;j<site_length;j++)
+    {
+        if (spaced_sites && j>=spacer_5_end && j<=spacer_3_end)
+        {
+            for (unsigned int letter=1;letter<=letters_in_alphabet;letter++)
+            {
+                o<<setw(10)<<resetiosflags(ios::right)
+                    <<setiosflags(ios::left)<<setprecision(3);
+                /*if (common_background && background.size()==4)
+                    o<<background[order.atgcindex(letter)-1];
+                else*/
+                    o<<counter->background_probability(order.atgcindex(letter));
+            }
+        }
+        else
+        {
+            for (unsigned int letter=1;letter<=letters_in_alphabet;letter++)
+                o<<setw(10)<<resetiosflags(ios::right)
+                    <<setiosflags(ios::left)<<setprecision(3)
+                    <<counter->foreground_probability(j,order.atgcindex(letter));
+        }
+        o<<endl;
+    }
+	o<<resetiosflags(ios::right)<<resetiosflags(ios::left);
+
+	return o;
+}
+

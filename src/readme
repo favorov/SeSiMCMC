@@ -158,7 +158,7 @@ Outputs the PWM in IBIS 2024 challenge format.
 
 The name of the TF to be written to output. Required for --pwm-ibis-2024
 
---motif-name-suffix
+--motif-name-suffix suffix
 
 The name field for ibis is TF_suffix. The default contatins "SeSiMCMC_", input file name, and "_I" as the pwm number.
 

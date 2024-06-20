@@ -16,6 +16,7 @@ $Id$
 #include <vector>
 #include <algorithm>
 #include <functional>
+//#include <filesystem>
 using namespace std;
 
 #include "Sequences.hpp"
@@ -1052,10 +1053,62 @@ int main(int argc, char ** argv)
 		find(args.begin(),args.end(),
 				"--ibis")
 		!=args.end() 
+        ||
+		find(args.begin(),args.end(),
+				"-ibis")
+		!=args.end() 
     )
     {
         ibis_output=1;
         arguments_reflected++;
+	}
+	if
+	(
+		(op=find(args.begin(),args.end(),
+				"--tf-name"))
+		!=args.end()
+		||
+		(op=find(args.begin(),args.end(),
+				"--tf"))
+		!=args.end()
+		||
+		(op=find(args.begin(),args.end(),
+				"-tf-name"))
+		!=args.end()
+		||
+		(op=find(args.begin(),args.end(),
+				"-tf"))
+		!=args.end()
+		||
+		(op=find(args.begin(),args.end(),
+				"--TF"))
+		!=args.end()
+		||
+		(op=find(args.begin(),args.end(),
+				"-TF"))
+		!=args.end()
+    )
+	{
+		op++;
+		if (op!=args.end())
+		{
+			TF_name=*op;
+            arguments_reflected+=2;
+		}
+	}
+	if
+	(
+		(op=find(args.begin(),args.end(),
+				"--motif-name-suffix"))
+		!=args.end()
+    )
+	{
+		op++;
+		if (op!=args.end())
+		{
+			motif_suffix=*op;
+            arguments_reflected+=2;
+		}
 	}
 //
 //mode swithes parsed
@@ -2608,6 +2661,26 @@ int main(int argc, char ** argv)
 		time_limit*=10;
 //making decisions about input/output
 
+    if (ibis_output)
+    {
+        //exclusive ibis mode
+        if (TF_name == "noname")
+        {
+            if(InputFileName == "")
+            {
+              	*log_file_ptr<<"Ibis and no tf name!\n"; 
+            } 
+            else
+            {
+                TF_name=InputFileName;
+                //TF_name=std::filesystem::path(InputFileName).stem();
+            }
+        }
+        config.minimal_motif_length=5;
+        config.maximal_motif_length=30;
+
+    }
+
 	if (do_nothing) be_quiet=1;
 
     if (output_cgi)
@@ -3083,6 +3156,11 @@ int main(int argc, char ** argv)
 				results[0]->xml_output(*out_ptr,id,InputFileName);
 				config.print(*out_ptr,"<comment name=\"configuration_parameters\">\n","</comment>\n","");
 				output_xml_footer(*out_ptr);
+			}
+			else if (ibis_output)
+			{
+                if(motif_suffix=="noname") {motif_suffix="_SeSiMCMC_I";}
+				results[0]->ibis_pwm_output(*out_ptr,TF_name,motif_suffix);
 			}
 			else //text
 			{
