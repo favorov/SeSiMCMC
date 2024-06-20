@@ -412,6 +412,11 @@ int main(int argc, char ** argv)
 	unsigned int output_cgi=0;
 	unsigned int output_weight_tables=0;
 	unsigned int not_output_weight_tables=0;
+    //ibis format pwm output
+    unsigned int ibis_output=0;
+    string TF_name="noname";
+    string motif_suffix="noname";
+    //ibis format optins end
 //	unsigned int adjustments_during_annealing=1;
 	string InputFileName = "";
 	string FakeInputFileName = "";
@@ -850,7 +855,7 @@ int main(int argc, char ** argv)
 		find(args.begin(),args.end(),
 						"-html")
 		!=args.end()
-  )
+    )
 	{
 		output_html=1;
 		arguments_reflected++;
@@ -955,7 +960,7 @@ int main(int argc, char ** argv)
 		(op=find(args.begin(),args.end(),
 				"-tl"))
 		!=args.end()
-  )
+    )
 	{
 		op++;
 		if (op!=args.end())
@@ -976,23 +981,81 @@ int main(int argc, char ** argv)
 		find(args.begin(),args.end(),
 				"--output-tables")
 		!=args.end()
-  )
+        ||
+		find(args.begin(),args.end(),
+				"--output-weight-tables")
+		!=args.end()
+        ||
+		find(args.begin(),args.end(),
+				"--pwm")
+		!=args.end()
+        ||
+		find(args.begin(),args.end(),
+				"-pwm")
+		!=args.end()
+    )
 	{
 		output_weight_tables=1;
 		arguments_reflected++;
 	}
-  else
+    else
 	{
 		if
 		(
 			find(args.begin(),args.end(),
 					"--not-output-tables")
 			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"--not-output-weight-tables")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"--not-pwm")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"--no-pwm")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"-not-pwm")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"-no-pwm")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"--pwm-")
+			!=args.end()
+			||
+            find(args.begin(),args.end(),
+					"-pwm-")
+			!=args.end()
 		)
 		{
 			not_output_weight_tables=1;
 			arguments_reflected++;
 		}
+    }
+	if
+	(
+		find(args.begin(),args.end(),
+				"--pwm-ibis-2024")
+		!=args.end()
+        ||
+		find(args.begin(),args.end(),
+				"--pwm-ibis")
+		!=args.end()
+        ||
+		find(args.begin(),args.end(),
+				"--ibis")
+		!=args.end() 
+    )
+    {
+        ibis_output=1;
+        arguments_reflected++;
 	}
 //
 //mode swithes parsed
@@ -2547,14 +2610,14 @@ int main(int argc, char ** argv)
 
 	if (do_nothing) be_quiet=1;
 
-  if (output_cgi)
+    if (output_cgi)
 	{
 		if (!be_not_quiet) be_quiet=1;
-  	if (!not_output_weight_tables) output_weight_tables=1;
+        if (!not_output_weight_tables) output_weight_tables=1;
 		log_file_ptr  = & cout;
 		output_html=1;
 	}
-  if (output_html || output_xml)
+    if (output_html || output_xml)
 	{
 		if (!be_not_quiet) be_quiet=1;
 	}
