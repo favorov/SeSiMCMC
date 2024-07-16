@@ -1066,6 +1066,7 @@ ostream & Profile::ibis_pwm_output (ostream & o, const string & TF, const string
         }
         o<<endl;
     }
+    o<<endl;
 	o<<resetiosflags(ios::right)<<resetiosflags(ios::left);
 
 	return o;
