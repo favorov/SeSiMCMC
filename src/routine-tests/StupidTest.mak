@@ -18,7 +18,7 @@ includeflags = $(foreach dir,$(subst :,$(space),$(srcdirlist)),-I$(dir))
 
 OPTIMISE=YES
 
-include ~/include/ccvars
+include ccvars
 
 .PHONY: all clean
 
