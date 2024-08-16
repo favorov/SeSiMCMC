@@ -3240,8 +3240,8 @@ void createFakeExperimentalBunch(SequencesPile &sp,
 			if (!be_quiet) *log_file_ptr<<fake_data_positions[i]<<"** ";
 		}
 		string name="Fake|seq";
-		char str_num[5];
-		sprintf(str_num,"%02i",i);
+		char str_num[10];
+		snprintf(str_num,10,"%02i",i);
 		name.append(str_num);
 		//the sequence is prepared.
 		sp.add(a,seq_length,name);
@@ -3308,8 +3308,8 @@ void createFakeExperimentalGappedBunch(SequencesPile &sp,
 			if (!be_quiet) *log_file_ptr<<fake_data_positions[i]<<"** ";
 		}
 		string name="Fake|seq";
-		char str_num[5];
-		sprintf(str_num,"%02i",i);
+		char str_num[10];
+		snprintf(str_num,10,"%02i",i);
 		name.append(str_num);
 		//the sequence is prepared.
 		sp.add(a,seq_length,name);
