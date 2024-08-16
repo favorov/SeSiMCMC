@@ -1061,7 +1061,7 @@ ostream & Profile::ibis_pwm_output (ostream & o, const string & TF, const string
         {
             for (unsigned int letter=1;letter<=letters_in_alphabet;letter++)
                 o<<setw(10)<<resetiosflags(ios::right)
-                    <<setiosflags(ios::left)<<setprecision(3)
+                    <<setiosflags(ios::left)<<setprecision(5)
                     <<counter->foreground_probability(j,order.atgcindex(letter));
         }
         o<<endl;
