@@ -2676,7 +2676,7 @@ int main(int argc, char ** argv)
                 //TF_name=std::filesystem::path(InputFileName).stem();
             }
         }
-        config.minimal_motif_length=5;
+        config.minimal_motif_length=7;
         config.maximal_motif_length=30;
 
     }
