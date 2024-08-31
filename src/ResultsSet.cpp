@@ -1049,26 +1049,20 @@ ostream & Profile::ibis_pwm_output (ostream & o, const string & TF, const string
         {
             for (unsigned int letter=1;letter<=letters_in_alphabet;letter++)
             {
-                o<<setw(10)<<resetiosflags(ios::right)
-                    <<setiosflags(ios::left)<<setprecision(5);
                 /*if (common_background && background.size()==4)
                     o<<background[order.atgcindex(letter)-1];
                 else*/
-                    o<<counter->background_probability(order.atgcindex(letter));
+                    o<<std::fixed<<std::setprecision(5)<<counter->background_probability(order.atgcindex(letter))<<" ";
             }
         }
         else
         {
             for (unsigned int letter=1;letter<=letters_in_alphabet;letter++)
-                o<<setw(10)<<resetiosflags(ios::right)
-                    <<setiosflags(ios::left)<<setprecision(5)
-                    <<counter->foreground_probability(j,order.atgcindex(letter));
+                o<<std::fixed<<std::setprecision(5)<<counter->foreground_probability(j,order.atgcindex(letter))<<" ";
         }
         o<<endl;
     }
     o<<endl;
-	o<<resetiosflags(ios::right)<<resetiosflags(ios::left);
-
 	return o;
 }
 
